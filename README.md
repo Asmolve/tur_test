@@ -1,3 +1,20 @@
+Тестовые данные:
+   - добавить страну, регион может кто угодно, без переадрессации на авторизацию/без проверки аутентификации
+   - SQL/JS вставки можно сделать, но они не представляют угрозы
+
+Составить SQL запрос (без использования его в проекте) для получения количества турбаз в каждой географической сущности (страна, регион, город).
+   By city:
+   select city_name, count(city_name) from cities left join campsites c on cities.id = c.city_id where city_name='Toronto';
+   
+   By region:
+   select region_name, count(region_name) from regions left join cities c on regions.id = c.region_id left join campsites c2 on c.id = c2.city_id where region_name = 'Chiba';
+   
+   By country:
+   select country_name, count(country_name) from countries left join regions r on countries.id = r.country_id left join cities c on r.id = c.region_id left join campsites c2 on c.id = c2.city_id where country_name='Россия';
+
+В ветке dev в db присутствует файл development.sqlite3, содержащий некоторые записи - в целях проверки работы + SQL команды написаны под него
+
+
 Первая часть:
 Цель: сделать простейшую админку для управления турбазами.
 
@@ -41,6 +58,16 @@
 Вторая часть:
 Цель: Составить SQL запрос (без использования его в проекте) для получения количества турбаз в каждой географической сущности (страна, регион, город).
 
+By city:
+select city_name, count(city_name) from cities left join campsites c on cities.id = c.city_id where city_name='Toronto';
+
+By region:
+select region_name, count(region_name) from regions left join cities c on regions.id = c.region_id left join campsites c2 on c.id = c2.city_id where region_name = 'Chiba';
+
+By country:
+select country_name, count(country_name) from countries left join regions r on countries.id = r.country_id left join cities c on r.id = c.region_id left join campsites c2 on c.id = c2.city_id where country_name='Россия';
+
+
 Пример результата запроса:
 —-----------------------------
 Россия 6
@@ -52,3 +79,4 @@
 —-----------------------------
 
 SQL запрос должно быть возможно применить на сгенерированной базе из первой части.
+

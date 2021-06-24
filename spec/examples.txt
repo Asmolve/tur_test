@@ -1,0 +1,9 @@
+example_id                                             | status  | run_time        |
+------------------------------------------------------ | ------- | --------------- |
+./spec/controllers/campsites_controller_spec.rb[1:1:1] | failed  | 0.11163 seconds |
+./spec/controllers/cities_controller_spec.rb[1:1:1]    | failed  | 0.00516 seconds |
+./spec/controllers/cities_controller_spec.rb[1:1:2]    | failed  | 0.09996 seconds |
+./spec/controllers/countries_controller_spec.rb[1:1:1] | passed  | 0.00976 seconds |
+./spec/controllers/countries_controller_spec.rb[2:1:1] | passed  | 0.09304 seconds |
+./spec/controllers/countries_controller_spec.rb[2:1:2] | unknown |                 |
+./spec/controllers/regions_controller_spec.rb[1:1:1]   | passed  | 0.11929 seconds |
