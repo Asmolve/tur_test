@@ -1,0 +1,47 @@
+<%= form_with(model: region) do |form| %>
+  <% if region.errors.any? %>
+    <div id="error_explanation">
+      <br>
+      <div class="container-fluid py-5 card">
+        <div class="bg-warning">
+          <h2 class="display-7 fw-bold table-warning"><%= pluralize(region.errors.count, "error") %> prohibited this region from being
+            saved:</h2>
+        </div>
+        <ul>
+          <% region.errors.each do |error| %>
+            <li class="col-md-8 fs-4"><%= error.full_message %>. For all regions ids click on the button "Regions" under the form
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.text_field :region_name, placeholder: "New region name", class: "form-control" %><br>
+  </div>
+  <div class="field form-group">
+    <%= form.text_field :country_id, id: :region_country_id, placeholder: "Country id", class: "form-control" %><br>
+  </div>
+  <div class="d-flex align-items-center align-middle">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Countries
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <% Country.all.each do |country| %>
+          <li>
+            <div class="dropdown-item">
+              <%= country.country_name %> id:  <%= country.id %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-1"></div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-info" %>
+    </div>
+  </div>
+<% end %>

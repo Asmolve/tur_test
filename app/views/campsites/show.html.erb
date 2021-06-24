@@ -1,0 +1,45 @@
+<p>
+  <strong>Campsite name:</strong>
+  <%= @campsite.campsite_name %>
+</p>
+
+<p class="card card-body">
+  <strong>Campsite name:</strong>
+  <%= @campsite.campsite_name %>
+  <% city = City.find_by(id: @campsite.city_id) %>
+  <strong>City:</strong>
+  <% if city %>
+    <%= city.city_name %>
+    <strong>City ID:</strong>
+    <%= city.id %>
+    <strong>Region:</strong>
+    <%
+      region = Region.find_by(id: city.region_id)
+      if region
+    %>
+      <%= region.region_name %>
+      <strong>Region ID:</strong>
+      <%= region.id %>
+      <strong>Country:</strong>
+      <% country = Country.find_by(id: region.country_id)
+         if country %>
+        <%= country.country_name %>
+        <strong>Country ID:</strong>
+        <%= country.id %>
+      <% else %>
+        No such a country with id <%= region.country_id %>
+      <% end %>
+    <% else %>
+      No such a region with id <%= city.region_id %>
+    <% end %>
+    <% else %>
+    No such a city with id <%= campsite.city_id %>
+  <% end %>
+</p>
+
+
+
+
+
+<%= link_to 'Edit', edit_campsite_path(@campsite), class: 'btn btn-primary' %>
+<%= link_to 'Back', campsites_path, class: "btn btn-dark"  %>

@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :campsites
+  resources :cities
+  resources :regions
+  resources :countries
+  root 'home#index'
+  get 'admin/adminpage'
 end

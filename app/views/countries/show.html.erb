@@ -1,0 +1,7 @@
+<p class="card card-body">
+  <strong>Country name:</strong>
+  <%= @country.country_name %>
+</p>
+
+<%= link_to 'Edit', edit_country_path(@country), class: "btn btn-primary" %>
+<%= link_to 'Back', countries_path, class: "btn btn-dark" %>

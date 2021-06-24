@@ -1,0 +1,51 @@
+<table class="table table-hover table-striped">
+  <thead class=" table-info">
+  <tr>
+    <th>Campsite</th>
+    <th>City</th>
+    <th>Region</th>
+    <th>Country</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody style="background-color: rgba(255,184,234,0.23)">
+  <% Campsite.all.order(:city_id).each do |campsite| %>
+    <tr class="align-middle">
+      <td><%= campsite.campsite_name %></td>
+      <td>
+        <%
+          city = City.find_by(id: campsite.city_id)
+          if city
+        %>
+          <%= city.city_name %>
+        <% else
+             next
+           end %>
+      </td>
+      <td>
+        <%
+          if city
+            region = Region.find_by(id: city.region_id)
+            if region
+        %>
+            <%= region.region_name %>
+          <% else
+               next
+             end %>
+          </td>
+          <td>
+            <% if region
+                 country = Country.find_by(id: region.country_id)
+                 if country %>
+                <%= country.country_name %>
+              <% else
+                   next
+                 end %>
+            <% end %>
+        <% end %>
+        </td>
+        <td colspan="3"></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
