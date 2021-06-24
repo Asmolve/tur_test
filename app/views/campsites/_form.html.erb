@@ -1,22 +1,51 @@
 <%= form_with(model: campsite) do |form| %>
   <% if campsite.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(campsite.errors.count, "error") %> prohibited this campsite from being saved:</h2>
-
-      <ul>
-        <% campsite.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+      <br>
+      <div class="container-fluid py-5 card">
+        <div class="bg-warning">
+          <h2 class="display-7 fw-bold table-warning"><%= pluralize(campsite.errors.count, "error") %> prohibited this
+            campsite from being saved:</h2>
+        </div>
+        <ul>
+          <% campsite.errors.each do |error| %>
+            <li class="col-md-8 fs-4"><%= error.full_message %>. For all city ids check the bottom "Countries" under
+              the form
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br>
+  <% end %>
+  
+  <div class="field form-group">
+    <%= form.text_field :campsite_name, placeholder: "New campsite name", class: "form-control" %><br>
+  </div>
+  <div class="field form-group">
+    <%= form.text_field :city_id, id: :campsite_city_id, placeholder: "City id", class: "form-control" %><br>
+  </div>
+  <div class="d-flex align-items-center align-middle">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Cities
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <% City.all.each do |city| %>
+          <li>
+            <div class="dropdown-item">
+              <%= city.city_name %> id:  <%= city.id %>
+            </div>
+          </li>
         <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :campsite_name %>
-    <%= form.text_field :campsite_name %>
+    <div class="col-1"></div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-info" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+
 <% end %>

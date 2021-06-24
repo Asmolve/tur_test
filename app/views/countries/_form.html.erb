@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :country_name %>
-    <%= form.text_field :country_name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex align-items-center align-middle">
+    <div class="field form-group">
+      <%= form.text_field :country_name, placeholder: 'New country name', class: "form-control" %>
+    </div>
+    <div class="col-1"></div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-info"%>
+    </div>
   </div>
 <% end %>

@@ -1,9 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<p>
+<p class="card card-body">
   <strong>Region name:</strong>
   <%= @region.region_name %>
+  <strong>Country name:</strong>
+  <%
+    country = Country.find_by(id: @region.country_id)
+    if country %>
+    <%= country.country_name %>
+    <strong>Country ID:</strong>
+    <%= @region.country_id %>
+  <% else %>
+    No such a country with id <%= @region.country_id %>
+  <% end %>
+
+
 </p>
 
-<%= link_to 'Edit', edit_region_path(@region) %> |
-<%= link_to 'Back', regions_path %>
+<%= link_to 'Edit', edit_region_path(@region), class: 'btn btn-primary'%>
+<%= link_to 'Back', regions_path, class: "btn btn-dark" %>

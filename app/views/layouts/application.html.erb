@@ -10,11 +10,15 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 <%= render "home/header" %>
 <div class="container-fluid">
+  <% if notice %>
+    <%= render "layouts/alerts" %>
+  <% end %>
   <%= yield %>
 </div>
 </body>

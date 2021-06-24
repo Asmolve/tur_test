@@ -1,27 +1,76 @@
-<p id="notice"><%= notice %></p>
+<% def edit_campsite(campsite) %>
+  <%= render 'form', campsite: campsite %>
+<% end %>
 
-<h1>Campsites</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Campsite name</th>
-      <th colspan="3"></th>
-    </tr>
+<table class="table table-hover table-striped">
+  <thead class=" table-info">
+  <tr>
+    <th>Campsite ID</th>
+    <th>Campsite</th>
+    <th>City</th>
+    <th>Region</th>
+    <th>Country</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
-  <tbody>
-    <% @campsites.each do |campsite| %>
-      <tr>
-        <td><%= campsite.campsite_name %></td>
-        <td><%= link_to 'Show', campsite %></td>
-        <td><%= link_to 'Edit', edit_campsite_path(campsite) %></td>
-        <td><%= link_to 'Destroy', campsite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody style="background-color: rgba(255,184,234,0.23)">
+  <% @campsites.each do |campsite| %>
+    <tr class="align-middle">
+      <td><%= campsite.id %></td>
+      <td><%= campsite.campsite_name %></td>
+      <td>
+        <%
+          city = City.find_by(id: campsite.city_id)
+          if city
+        %>
+          <%= city.city_name %>
+        <% else %>
+          Invalid city ID (<%= campsite.city_id %>)
+        <% end %>
+      </td>
+      <td>
+        <%
+          if city
+            region = Region.find_by(id: city.region_id)
+            if region
+        %>
+            <%= region.region_name %>
+          <% else %>
+            Invalid region ID (<%= city.region_id %>)
+          <% end %>
+          </td>
+          <td>
+            <% if region
+                 country = Country.find_by(id: region.country_id)
+                 if country %>
+                <%= country.country_name %>
+              <% else %>
+                Invalid country ID (<%= region.country_id %>)
+              <% end %>
+            <% end %>
+        <% end %>
+        </td>
+
+
+        <td><%= link_to '', edit_campsite(campsite) %></td>
+        <td><%= link_to 'Destroy', campsite, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Campsite', new_campsite_path %>
+<button class="btn btn-dark" onclick="$('#newCampsiteForm').show()">
+  Add a new campsite
+</button>
+<br/>
+<br/>
+
+<div id="newCampsiteForm" style="display: none">
+  <% @campsite = Campsite.new %>
+  <%= render 'form', campsite: @campsite %>
+</div>
+<br><br>
