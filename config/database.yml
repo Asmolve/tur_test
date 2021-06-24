@@ -16,7 +16,7 @@ test:
 development:
   adapter: postgresql
   encoding: unicode
-  database: tur_test_dev
+  database: tur_test_prod
   pool: 5
   username: postgres
   password: 15mav00
@@ -25,7 +25,7 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: tur_test_prod
+  database: tur_test_dev
   pool: 5
   username: postgres
   password: 15mav00
