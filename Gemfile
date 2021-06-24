@@ -27,6 +27,9 @@ gem 'devise', '~> 4.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+group :production, :development, :test do
+  gem 'pg', '~> 1.2', '>= 1.2.3'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,13 +44,8 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
-
-
 end
 
-group :production do
-  gem 'pg', '~> 1.2', '>= 1.2.3'
-end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

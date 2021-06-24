@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_06_22_192454) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "campsites", force: :cascade do |t|
     t.string "campsite_name"
-    t.integer "city_id"
+    t.bigint "city_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["city_id"], name: "index_campsites_on_city_id"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_192454) do
 
   create_table "cities", force: :cascade do |t|
     t.string "city_name"
-    t.integer "region_id"
+    t.bigint "region_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["region_id"], name: "index_cities_on_region_id"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_192454) do
 
   create_table "regions", force: :cascade do |t|
     t.string "region_name"
-    t.integer "country_id"
+    t.bigint "country_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
